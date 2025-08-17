@@ -12,7 +12,7 @@ scopes = ["https://www.googleapis.com/auth/spreadsheets.readonly"]
 creds = Credentials.from_service_account_info(creds_dict, scopes=scopes)
 client = gspread.authorize(creds)
 
-SHEET_ID = os.environ["1of-9NiJTC0gI60e9MI_dI-XVy9tUfD2MIYLxoNUPODM"]
+SHEET_ID = os.environ["SHEET_ID"]
 sheet = client.open_by_key(SHEET_ID).sheet1
 
 
