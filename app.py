@@ -63,3 +63,10 @@ def index():
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)
+
+from flask import Flask, request, render_template, make_response
+
+@app.after_request
+def add_header(response):
+    response.headers['X-Frame-Options'] = 'ALLOWALL'
+    return response
