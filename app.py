@@ -6,6 +6,11 @@ from google.oauth2.service_account import Credentials
 
 app = Flask(__name__)
 
+@app.after_request
+def add_header(response):
+    response.headers['X-Frame-Options'] = 'ALLOWALL'
+    return response
+
 # === Google Sheets 接続設定 ===
 creds_dict = json.loads(os.environ["GOOGLE_CREDENTIALS"])  # Render 環境変数
 scopes = ["https://www.googleapis.com/auth/spreadsheets.readonly"]
@@ -64,9 +69,3 @@ def index():
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)
 
-from flask import Flask, request, render_template, make_response
-
-@app.after_request
-def add_header(response):
-    response.headers['X-Frame-Options'] = 'ALLOWALL'
-    return response
