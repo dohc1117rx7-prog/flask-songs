@@ -8,6 +8,7 @@ app = Flask(__name__)
 
 @app.after_request
 def add_header(response):
+    response.headers['Content-Security-Policy'] = "frame-ancestors *"
     response.headers['X-Frame-Options'] = 'ALLOWALL'
     return response
 
